@@ -1,7 +1,7 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import React from 'react'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import CategoryLayout from '@/theme/custom/layouts/category/CategoryLayout'
 
 export default function Category ({ tags, allPosts, filteredPosts, category, categories }) {
@@ -17,7 +17,7 @@ export default function Category ({ tags, allPosts, filteredPosts, category, cat
 export async function getStaticProps ({ params }) {
   const from = 'category-props'
   const category = params.category
-  const notionPageData = await getNotionPageData({ from })
+  const notionPageData = await getNotionData({ from })
   const allPosts = await getAllPosts({ notionPageData, from })
   const categories = await getAllCategories(allPosts)
   const tagOptions = notionPageData.tagOptions

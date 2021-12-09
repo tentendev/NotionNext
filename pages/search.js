@@ -1,30 +1,11 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { useRouter } from 'next/router'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import { useGlobal } from '@/lib/global'
 import { SearchLayout } from '@/theme'
 
-export async function getStaticProps () {
-  const from = 'search-props'
-  const notionPageData = await getNotionPageData({ from })
-  const allPosts = await getAllPosts({ notionPageData, from })
-  const categories = await getAllCategories(allPosts)
-  const tagOptions = notionPageData.tagOptions
-  const tags = await getAllTags({ allPosts, tagOptions })
-
-  return {
-    props: {
-      allPosts,
-      tags,
-      categories
-    },
-    revalidate: 1
-  }
-}
-
 const Search = ({ allPosts, tags, categories }) => {
-  // 处理查询过滤 支持标签、关键词过滤
   let filteredPosts = []
   const searchKey = getSearchKey()
   if (searchKey) {
@@ -42,6 +23,24 @@ const Search = ({ allPosts, tags, categories }) => {
   }
   return <SearchLayout meta={meta} tags={tags} allPosts={allPosts} searchKey={searchKey} categories={categories}
                        filteredPosts={filteredPosts} />
+}
+
+export async function getStaticProps () {
+  const from = 'search-props'
+  const notionPageData = await getNotionData({ from })
+  const allPosts = await getAllPosts({ notionPageData, from })
+  const categories = await getAllCategories(allPosts)
+  const tagOptions = notionPageData.tagOptions
+  const tags = await getAllTags({ allPosts, tagOptions })
+
+  return {
+    props: {
+      allPosts,
+      tags,
+      categories
+    },
+    revalidate: 1
+  }
 }
 
 export function getSearchKey () {

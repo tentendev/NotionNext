@@ -1,11 +1,11 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import { IndexLayout } from '@/theme'
 
 export async function getStaticProps () {
   const from = 'index'
-  const notionPageData = await getNotionPageData({ from })
+  const notionPageData = await getNotionData({ from })
   const allPosts = await getAllPosts({ notionPageData, from })
   const categories = await getAllCategories(allPosts)
   const tagOptions = notionPageData.tagOptions

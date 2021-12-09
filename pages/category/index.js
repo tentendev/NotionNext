@@ -1,5 +1,5 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import React from 'react'
 import CategoryIndexLayout from '@/theme/custom/layouts/category/CategoryIndexLayout'
 
@@ -9,7 +9,7 @@ export default function Category ({ tags, allPosts, categories }) {
 
 export async function getStaticProps () {
   const from = 'tag-index-props'
-  const notionPageData = await getNotionPageData({ from })
+  const notionPageData = await getNotionData({ from })
   const allPosts = await getAllPosts({ notionPageData, from })
   const categories = await getAllCategories(allPosts)
   const tagOptions = notionPageData.tagOptions

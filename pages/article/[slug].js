@@ -11,7 +11,7 @@ import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-python'
 import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-typescript'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import ArticleLayout from '@/theme/custom/layouts/article/ArticleLayout'
 
 const ArticleDetail = ({ post, blockMap, tags, prev, next, allPosts, categories }) => {
@@ -35,7 +35,7 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ params: { slug } }) {
   const from = `slug-props-${slug}`
-  const notionPageData = await getNotionPageData({ from })
+  const notionPageData = await getNotionData({ from })
   let allPosts = await getAllPosts({ notionPageData, from, includePage: true })
   const post = allPosts.find(p => p.slug === slug)
 

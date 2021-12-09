@@ -1,6 +1,6 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { getNotionData } from '@/lib/notion/getNotionData'
 import { useGlobal } from '@/lib/global'
 import React from 'react'
 import TagIndexLayout from '@/theme/custom/layouts/tag/TagIndexLayout'
@@ -18,7 +18,7 @@ export default function Tag ({ tags, allPosts, categories }) {
 
 export async function getStaticProps () {
   const from = 'tag-index-props'
-  const notionPageData = await getNotionPageData({ from })
+  const notionPageData = await getNotionData({ from })
   const allPosts = await getAllPosts({ notionPageData, from })
   const categories = await getAllCategories(allPosts)
   const tagOptions = notionPageData.tagOptions
