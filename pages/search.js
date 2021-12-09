@@ -1,13 +1,9 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import BaseLayout from '@/layouts/BaseLayout'
-import StickyBar from '@/components/StickyBar'
-import BlogPostListScroll from '@/components/BlogPostListScroll'
 import { useRouter } from 'next/router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { getNotionPageData } from '@/lib/notion/getNotionData'
 import { useGlobal } from '@/lib/global'
+import { SearchLayout } from '@/theme'
 
 export async function getStaticProps () {
   const from = 'search-props'
@@ -44,16 +40,8 @@ const Search = ({ allPosts, tags, categories }) => {
     description: BLOG.description,
     type: 'website'
   }
-  return (
-    <BaseLayout meta={meta} tags={tags} totalPosts={allPosts} currentSearch={searchKey} categories={categories}>
-      <div className=''>
-        <StickyBar>
-          <div className='p-4 dark:text-gray-200'><FontAwesomeIcon icon={faSearch} className='mr-1'/> 搜索词： {searchKey}</div>
-        </StickyBar>
-        <BlogPostListScroll posts={filteredPosts} tags={tags} currentSearch={searchKey} />
-      </div>
-    </BaseLayout>
-  )
+  return <SearchLayout meta={meta} tags={tags} allPosts={allPosts} searchKey={searchKey} categories={categories}
+                       filteredPosts={filteredPosts} />
 }
 
 export function getSearchKey () {
@@ -63,4 +51,5 @@ export function getSearchKey () {
   }
   return null
 }
+
 export default Search

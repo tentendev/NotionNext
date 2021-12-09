@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import DarkModeButton from '@/components/DarkModeButton'
-import SideBarDrawer from '@/components/SideBarDrawer'
+import DarkModeButton from '@/theme/custom/components/DarkModeButton'
+import SideBarDrawer from '@/theme/custom/components/SideBarDrawer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import BLOG from '@/blog.config'

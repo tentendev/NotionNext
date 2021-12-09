@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useState } from 'react'
-import SideBar from '@/components/SideBar'
+import SideBar from '@/theme/custom/components/SideBar'
 
 /**
  * 侧边栏抽屉面板，可以从侧面拉出

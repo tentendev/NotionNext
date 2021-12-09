@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import BLOG from '@/blog.config'
-import ThirdPartyScript from '@/components/ThirdPartyScript'
+import ThirdPartyScript from '@/theme/custom/components/ThirdPartyScript'
 
 class MyDocument extends Document {
   static async getInitialProps (ctx) {

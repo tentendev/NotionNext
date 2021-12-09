@@ -1,5 +1,5 @@
 import BLOG from '@/blog.config'
-import TagItemMini from '@/components/TagItemMini'
+import TagItemMini from '@/theme/custom/components/TagItemMini'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'

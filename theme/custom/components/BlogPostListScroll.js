@@ -1,9 +1,9 @@
-import BlogPostCard from '@/components/BlogPostCard'
+import BlogPostCard from '@/theme/custom/components/BlogPostCard'
 import BLOG from '@/blog.config'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import throttle from 'lodash.throttle'
-import BlogPostListEmpty from '@/components/BlogPostListEmpty'
+import BlogPostListEmpty from '@/theme/custom/components/BlogPostListEmpty'
 
 /**
  * 博客列表滚动分页

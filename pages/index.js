@@ -1,8 +1,7 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import BaseLayout from '@/layouts/BaseLayout'
-import BlogPostListScroll from '@/components/BlogPostListScroll'
 import { getNotionPageData } from '@/lib/notion/getNotionData'
+import { IndexLayout } from '@/theme'
 
 export async function getStaticProps () {
   const from = 'index'
@@ -28,13 +27,7 @@ export async function getStaticProps () {
 }
 
 const Index = ({ allPosts, tags, meta, categories }) => {
-  return (
-    <BaseLayout meta={meta} tags={tags} totalPosts={allPosts} categories={categories}>
-      <div className=''>
-        <BlogPostListScroll posts={allPosts} tags={tags} />
-      </div>
-    </BaseLayout>
-  )
+  return <IndexLayout allPosts={allPosts} tags={tags} meta={meta} categories={categories} />
 }
 
 export default Index

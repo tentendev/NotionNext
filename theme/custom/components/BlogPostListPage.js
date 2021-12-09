@@ -1,9 +1,9 @@
-import BlogPostCard from '@/components/BlogPostCard'
-import Pagination from '@/components/Pagination'
+import BlogPostCard from '@/theme/custom/components/BlogPostCard'
+import Pagination from '@/theme/custom/components/Pagination'
 import BLOG from '@/blog.config'
 
 import { useRouter } from 'next/router'
-import BlogPostListEmpty from '@/components/BlogPostListEmpty'
+import BlogPostListEmpty from '@/theme/custom/components/BlogPostListEmpty'
 
 /**
  * 文章列表分页表格

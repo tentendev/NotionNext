@@ -1,4 +1,8 @@
 import BLOG from '@/blog.config'
+import dynamic from 'next/dynamic'
+
+const Ackee = dynamic(() => import('@/theme/custom/components/Ackee'), { ssr: false })
+const Gtag = dynamic(() => import('@/theme/custom/components/Gtag'), { ssr: false })
 
 /**
  * 第三方代码 统计脚本
@@ -7,6 +11,13 @@ import BLOG from '@/blog.config'
  */
 const ThirdPartyScript = () => {
   return (<>
+    {BLOG.isProd && BLOG?.analytics?.provider === 'ackee' && (
+      <Ackee
+        ackeeServerUrl={BLOG.analytics.ackeeConfig.dataAckeeServer}
+        ackeeDomainId={BLOG.analytics.ackeeConfig.domainId}
+      />
+    )}
+    {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
     {BLOG.DaoVoiceId && (<>
       {/* DaoVoice 反馈 */}
       <script async dangerouslySetInnerHTML={{
@@ -35,24 +46,24 @@ const ThirdPartyScript = () => {
 
     {/* 代码统计 */}
     {BLOG.isProd && (<>
-        {/* GoogleAdsense */}
-        {BLOG.googleAdsenseId && (
-          <script data-ad-client={BLOG.googleAdsenseId} async
-                  src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
-        )}
+      {/* GoogleAdsense */}
+      {BLOG.googleAdsenseId && (
+        <script data-ad-client={BLOG.googleAdsenseId} async
+                src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
+      )}
 
-        {/* ackee统计脚本 */}
-        {BLOG.analytics.provider === 'ackee' && (
-          <script async src={BLOG.analytics.ackeeConfig.tracker}
-                  data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
-                  data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
-          />
-        )}
-        {/* 百度统计 */}
-        {BLOG.analytics.baiduAnalytics && (
-          <script async
-                  dangerouslySetInnerHTML={{
-                    __html: `
+      {/* ackee统计脚本 */}
+      {BLOG.analytics.provider === 'ackee' && (
+        <script async src={BLOG.analytics.ackeeConfig.tracker}
+                data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
+                data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
+        />
+      )}
+      {/* 百度统计 */}
+      {BLOG.analytics.baiduAnalytics && (
+        <script async
+                dangerouslySetInnerHTML={{
+                  __html: `
                   var _hmt = _hmt || [];
                   (function() {
                     var hm = document.createElement("script");
@@ -61,35 +72,35 @@ const ThirdPartyScript = () => {
                     s.parentNode.insertBefore(hm, s);
                   })();
                   `
-                  }}
-          />
-        )}
-        {/* 不蒜子 */}
-        {BLOG.analytics.busuanzi && (
-          <script async
-                  src={'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}
-          />
-        )}
+                }}
+        />
+      )}
+      {/* 不蒜子 */}
+      {BLOG.analytics.busuanzi && (
+        <script async
+                src={'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}
+        />
+      )}
 
-        {/* 站长统计 */}
-        {BLOG.analytics.cnzzAnalytics && (
-          <script async
-                  dangerouslySetInnerHTML={{
-                    __html: `
+      {/* 站长统计 */}
+      {BLOG.analytics.cnzzAnalytics && (
+        <script async
+                dangerouslySetInnerHTML={{
+                  __html: `
                   document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_${BLOG.analytics.cnzzAnalytics}'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D${BLOG.analytics.cnzzAnalytics}' type='text/javascript'%3E%3C/script%3E"));
                   `
-                  }}
-          />
-        )}
+                }}
+        />
+      )}
 
-        {/* 谷歌统计 */}
-        {BLOG.analytics.provider === 'ga' && (<>
-            <script async
-                    src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.analytics.gaConfig.measurementId}`}
-            />
-            <script async
-                    dangerouslySetInnerHTML={{
-                      __html: `
+      {/* 谷歌统计 */}
+      {BLOG.analytics.provider === 'ga' && (<>
+        <script async
+                src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.analytics.gaConfig.measurementId}`}
+        />
+        <script async
+                dangerouslySetInnerHTML={{
+                  __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
@@ -97,10 +108,10 @@ const ThirdPartyScript = () => {
                           page_path: window.location.pathname,
                         });
                       `
-                    }}
-            />
-          </>)}
+                }}
+        />
       </>)}
+    </>)}
   </>)
 }
 

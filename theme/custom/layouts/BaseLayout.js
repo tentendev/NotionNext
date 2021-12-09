@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useRef } from 'react'
-import CommonHead from '@/components/CommonHead'
+import CommonHead from '@/theme/custom/components/CommonHead'
 import throttle from 'lodash.throttle'
 import BLOG from '@/blog.config'
-import TopNav from '@/components/TopNav'
-import Footer from '@/components/Footer'
-import SideBar from '@/components/SideBar'
-import JumpToTopButton from '@/components/JumpToTopButton'
+import TopNav from '@/theme/custom/components/TopNav'
+import Footer from '@/theme/custom/components/Footer'
+import SideBar from '@/theme/custom/components/SideBar'
+import JumpToTopButton from '@/theme/custom/components/JumpToTopButton'
 import { useGlobal } from '@/lib/global'
-import DarkModeButton from '@/components/DarkModeButton'
+import DarkModeButton from '@/theme/custom/components/DarkModeButton'
 
 /**
  * 基础布局 采用左右两侧布局，移动端使用顶部导航栏

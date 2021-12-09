@@ -20,10 +20,13 @@
     "post-build": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "@mui/material": "^5.2.3",
     "@popperjs/core": "^2.9.3",
     "animate.css": "^4.1.1",
     "axios": ">=0.21.1",

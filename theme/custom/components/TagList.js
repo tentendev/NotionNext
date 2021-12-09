@@ -1,5 +1,5 @@
 import React from 'react'
-import TagItem from '@/components/TagItem'
+import TagItem from '@/theme/custom/components/TagItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 

@@ -1,15 +1,9 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
-import BLOG from '@/blog.config'
-import BaseLayout from '@/layouts/BaseLayout'
 import { getNotionPageData } from '@/lib/notion/getNotionData'
-import StickyBar from '@/components/StickyBar'
 import React from 'react'
-import { useGlobal } from '@/lib/global'
-import BlogPostArchive from '@/components/BlogPostArchive'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArchive } from '@fortawesome/free-solid-svg-icons'
+import ArchiveLayout from '@/theme/custom/layouts/archive/ArchiveLayout'
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const from = 'index'
   const notionPageData = await getNotionPageData({ from })
   const allPosts = await getAllPosts({ notionPageData, from })
@@ -27,7 +21,6 @@ export async function getStaticProps () {
 }
 
 const Index = ({ allPosts, tags, categories }) => {
-  const { locale } = useGlobal()
   // 深拷贝
   const postsSortByDate = Object.create(allPosts)
 
@@ -38,13 +31,7 @@ const Index = ({ allPosts, tags, categories }) => {
     return dateB - dateA
   })
 
-  const meta = {
-    title: `${BLOG.title} | ${locale.NAV.ARCHIVE} `,
-    description: BLOG.description,
-    type: 'website'
-  }
-
-  const archivePosts = { }
+  const archivePosts = {}
 
   postsSortByDate.forEach(post => {
     const date = post.date.start_date.slice(0, 7)
@@ -55,20 +42,7 @@ const Index = ({ allPosts, tags, categories }) => {
     }
   })
 
-  return (
-    <BaseLayout meta={meta} tags={tags} categories={categories}>
-      <div className=' pt-16 '>
-        <StickyBar>
-          <div className='py-2.5 text-lg lg:mx-14 dark:text-gray-200'><FontAwesomeIcon icon={faArchive} className='mr-4'/>{locale.NAV.ARCHIVE}</div>
-        </StickyBar>
-        <div className='mt-20 mx-2 lg:mx-20 bg-white p-12 dark:bg-gray-800'>
-          {Object.keys(archivePosts).map(archiveTitle => (
-             <BlogPostArchive key={archiveTitle} posts={archivePosts[archiveTitle]} archiveTitle={archiveTitle}/>
-          ))}
-        </div>
-      </div>
-    </BaseLayout>
-  )
+  return <ArchiveLayout tags={tags} archivePosts={archivePosts} categories={} />
 }
 
 export default Index

@@ -11,7 +11,7 @@ const GitalkComponent = dynamic(
 )
 const UtterancesComponent = dynamic(
   () => {
-    return import('@/components/Utterances')
+    return import('@/theme/custom/components/Utterances')
   },
   { ssr: false }
 )

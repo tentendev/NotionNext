@@ -1,5 +1,5 @@
 import React from 'react'
-import ShareBar from '@/components/ShareBar'
+import ShareBar from '@/theme/custom/components/ShareBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShareAltSquare } from '@fortawesome/free-solid-svg-icons'
 

@@ -1,11 +1,8 @@
 import { getAllCategories, getAllPosts, getAllTags } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import StickyBar from '@/components/StickyBar'
-import BaseLayout from '@/layouts/BaseLayout'
-import BlogPostListScroll from '@/components/BlogPostListScroll'
 import React from 'react'
-import CategoryList from '@/components/CategoryList'
 import { getNotionPageData } from '@/lib/notion/getNotionData'
+import CategoryLayout from '@/theme/custom/layouts/category/CategoryLayout'
 
 export default function Category ({ tags, allPosts, filteredPosts, category, categories }) {
   const meta = {
@@ -13,14 +10,8 @@ export default function Category ({ tags, allPosts, filteredPosts, category, cat
     description: BLOG.description,
     type: 'website'
   }
-  return <BaseLayout meta={meta} tags={tags} currentCategory={category} totalPosts={allPosts} categories={categories}>
-    <div className=' pt-16'>
-      <StickyBar>
-        <CategoryList currentCategory={category} categories={categories} />
-      </StickyBar>
-      <BlogPostListScroll posts={filteredPosts} tags={tags} currentCategory={category}/>
-    </div>
-  </BaseLayout>
+  return <CategoryLayout filteredPosts={filteredPosts} allPosts={allPosts} categories={categories} meta={meta}
+                         tags={tags} category={categories} />
 }
 
 export async function getStaticProps ({ params }) {
