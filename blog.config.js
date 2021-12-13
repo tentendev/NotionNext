@@ -1,11 +1,11 @@
 const BLOG = {
-  title: '塘里博客',
-  author: '塘里1024',
-  email: 'tlyong1992@hotmail.com',
-  link: 'https://tangly1024.com',
+  title: 'Techsho',
+  author: 'Tenten',
+  email: 'dev@tenten.co',
+  link: 'https://techsho.com',
   description: '欢迎访问塘里1024的博客，这里主要是关于编程技术与投资理财相关的思考。我的本职是一名程序员、写博客是我的业余爱好',
   lang: 'zh-CN', // ['zh-CN','en-US'] default lang => see /lib/lang.js for more.
-  notionPageId: process.env.NOTION_PAGE_ID || 'bee1fccfa3bd47a1a7be83cc71372d83', // Important page_id！！！
+  notionPageId: process.env.NOTION_PAGE_ID || 'ba852a9363554b928db9c14a819ed0bc', // Important page_id！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN || '', // Useful if you prefer not to make your database public
   defaultImgCover: 'https://avatars.githubusercontent.com/u/15920488', // default image cover
   appearance: 'auto', // ['light', 'dark', 'auto'],
@@ -43,8 +43,8 @@ const BLOG = {
     provider: 'cusdis', // leave it empty if you don't need any comment plugin
     gitalkConfig: {
       repo: 'NotionNext', // The repository of store comments
-      owner: 'tangly1024',
-      admin: ['tangly1024'],
+      owner: 'tentendev',
+      admin: ['tentendev'],
       clientID: 'be7864a16b693e256f8f',
       clientSecret: 'dbd0f6d9ceea8940f6ed20936b415274b8fe66a2',
       distractionFreeMode: false
@@ -55,7 +55,7 @@ const BLOG = {
       scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
     },
     utterancesConfig: {
-      repo: 'tangly1024/NotionNext'
+      repo: 'tentendev/NotionNext'
     }
   },
   isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
